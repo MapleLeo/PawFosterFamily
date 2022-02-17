@@ -1,1 +1,5 @@
-print('hello')
+from flask_app import app
+from flask_app.controllers import fosters, shelters, pets, applications
+
+if __name__ == "__main__":
+    app.run(debug=True)

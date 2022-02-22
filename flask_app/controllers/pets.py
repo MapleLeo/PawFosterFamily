@@ -4,7 +4,7 @@ from flask_app.models.pet import Pet
 from flask_app.models.foster import Foster
 from flask_app.models.shelter import Shelter
 from flask_app.models.application import Application
-
+import os
 @app.route('/new/pet')
 def new_pet():
     if'shelter_id' not in session:
@@ -22,11 +22,12 @@ def add_pet():
         return redirect('/logout')
     if not Pet.validate_pet(request.form):
         return redirect('/shelter/dashboard')
-    print(request)
-    if 'file' not in request.files:
-        return redirect("/")
+    if 'img' not in request.files:
+        return redirect("/shelter/dashboard")
+    file = request.files['img']
+    file.save(os.path.join("flask_app/Static/", file.filename))
     data = {
-        # 'img': request.form['img'],
+        'img': file.filename,
         'name': request.form['name'],
         'age': request.form['age'],
         'foster_time_needed': request.form['foster_time_needed'],
@@ -62,6 +63,6 @@ def destroy_pet(id):
 @app.route('/pet/<int:id>')
 def show_pet(id):
     if 'foster_id' not in session:
-        return redirect('/foster/logout')
+        return redirect('/logout')
     return render_template('show_pet.html',foster=Foster.get_by_id({'id': session['foster_id']}), pet=Pet.get_one({'id': id}))
 

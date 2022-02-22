@@ -42,7 +42,7 @@ def foster_login():
 @app.route('/foster/dashboard')
 def foster_dashboard():
     if 'foster_id' not in session:
-        return redirect('/foster/logout')
+        return redirect('/logout')
     data = {
         'id': session['foster_id']
     }
@@ -52,7 +52,7 @@ def foster_dashboard():
 @app.route('/fosters/<int:id>')
 def foster_thoughts(id):
     if 'foster_id' not in session:
-        return redirect('/foster/logout')
+        return redirect('/logout')
     data = {
         'id':id
     }
@@ -61,7 +61,7 @@ def foster_thoughts(id):
 @app.route('/foster/account')
 def foster_account():
     if 'foster_id' not in session:
-        return redirect('/foster/logout')
+        return redirect('/logout')
     data = {
         'id': session['foster_id']
     }
@@ -77,6 +77,6 @@ def foster_logout():
 @app.route('/read_notification/<int:id>' ,methods=['POST'])
 def read_notification(id):
     if 'foster_id' not in session:
-        return redirect('/foster/logout')
+        return redirect('/logout')
     Application.mark_read(id)
     return redirect('/foster/account')

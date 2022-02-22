@@ -12,12 +12,13 @@
         <h2 class="float-left mb-0">Welcome back {{foster.first_name}}!</h2>
         <nav class="nav nav-masthead justify-content-center float-right">
             <a href="/foster/account" class="btn btn-info mr-1">My Foster</a>
-            <a href="/foster/logout" class="btn btn-info">Logout</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
         </nav>
         <div class="clearfix"></div>
     </div>
     <div class="card col-10 mx-auto my-5 border shadow">
         <div class="card-body">
+            <img src="/static/{{ pet.img }}" class="card-img-top" alt="{{pet.name}}'s pic">
             <h5 class="card-title">{{pet.name}}</h5>
             <p class="card-text">Age: {{pet.age}}</p>
             <p class="card-text">Foster time needed: {{pet.foster_time_needed}}</p>

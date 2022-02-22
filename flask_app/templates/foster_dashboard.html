@@ -12,7 +12,7 @@
         <h2 class="float-left mb-0">Welcome back {{foster.first_name}}!</h2>
         <nav class="nav nav-masthead justify-content-center float-right">
             <a href="/foster/account" class="btn btn-info mr-1">My Foster</a>
-            <a href="/foster/logout" class="btn btn-info">Logout</a>
+            <a href="/logout" class="btn btn-info">Logout</a>
         </nav>
         <div class="clearfix"></div>
     </div>
@@ -22,7 +22,7 @@
             {% for pet in pets %}
             <div class="col-md-4">
                 <div class="card shadow">
-                    <img class=" card-img-top" src="img/{{pet.img}}.jpg" alt="{{pet.name}}'s pic"></img>
+                    <img src="/static/{{ pet.img }}" class="card-img-top" alt="{{pet.name}}'s pic">
                     <div class="card-body">
                         <h5 class="card-title">{{pet.name}}</h5>
                         <p>Age: {{pet.age}}</p>

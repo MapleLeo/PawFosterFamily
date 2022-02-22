@@ -1,5 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
+from base64 import b64encode
+
 
 class Pet:
     db = 'pawfosterfamily'
@@ -17,7 +19,7 @@ class Pet:
 
     @classmethod
     def save(cls,data):
-        query = 'INSERT INTO pets (name, age, foster_time_needed, foster_grade, description, shelter_id) VALUES (%(name)s, %(age)s, %(foster_time_needed)s, %(foster_grade)s, %(description)s, %(shelter_id)s);'
+        query = 'INSERT INTO pets (img, name, age, foster_time_needed, foster_grade, description, shelter_id) VALUES (%(img)s, %(name)s, %(age)s, %(foster_time_needed)s, %(foster_grade)s, %(description)s, %(shelter_id)s);'
         # query = 'INSERT INTO pets (img, name, age, foster_time_needed, foster_grade, description, shelter_id) VALUES (%(img)s, %(name)s, %(age)s, %(foster_time_needed)s, %(foster_grade)s, %(description)s, %(shelter_id)s);'
         return connectToMySQL(cls.db).query_db(query, data)
 

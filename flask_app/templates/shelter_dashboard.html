@@ -20,7 +20,7 @@
             <h2 class="text-info">My Paws</h2>
             {% for pet in pets %}
             <div class="card mt-3">
-                <img src="{{pet.name}}.jpg" class="card-img-top" alt="{{pet.name}}'s pic">
+                <img src="/static/{{ pet.img }}" class="card-img-top" alt="{{pet.name}}'s pic">
                 <div class="card-body">
                     <h5 class="card-title">{{pet.name}}</h5>
                     <p class="card-text">

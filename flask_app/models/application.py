@@ -47,7 +47,6 @@ class Application:
                 'pet_name': row['name'],
                 'foster': Foster(row),
             })
-        print(applications)
         return applications
     
     
@@ -58,5 +57,5 @@ class Application:
     
     @classmethod
     def set_status(cls, id, status):
-        query = 'update applications set `status` = %(status)s where id=%(id)s;'
+        query = 'update applications set `status` = %(status)s, `show`=1 where id=%(id)s;'
         return connectToMySQL(cls.db).query_db(query, {'id': id, 'status': status})

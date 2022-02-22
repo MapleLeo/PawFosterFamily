@@ -17,7 +17,7 @@ class Shelter:
 
     @classmethod
     def save(cls,data):
-        query = 'INSERT INTO users (shelter_name, email, city, state, password) VALUES (%(shelter_name)s, %(email)s, %(city)s, %(state)s, %(password)s);'
+        query = 'INSERT INTO shelters (shelter_name, email, city, state, password) VALUES (%(shelter_name)s, %(email)s, %(city)s, %(state)s, %(password)s);'
         return connectToMySQL(cls.db).query_db(query,data)
 
     @classmethod
@@ -57,10 +57,10 @@ class Shelter:
         if len(shelter['shelter_name']) < 2:
             flash("Shelter name must be at least 2 characters","shelter_register")
             is_valid = False
-        if len(foster['city']) < 1:
+        if len(shelter['city']) < 1:
             flash("City is required","shelter_register")
             is_valid = False    
-        if len(foster['password']) < 8:
+        if len(shelter['password']) < 8:
             flash("Password must be at least 8 characters","shelter_register")
             is_valid = False
         if shelter['password'] != shelter['confirm']:

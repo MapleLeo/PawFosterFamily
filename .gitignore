@@ -1,4 +1,6 @@
 beltexam
+bootstrap-5.0.2
+bootstrap-5.0.2-examples/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

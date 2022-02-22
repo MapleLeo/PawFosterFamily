@@ -18,7 +18,7 @@ class Foster:
 
     @classmethod
     def save(cls,data):
-        query = 'INSERT INTO users (first_name, last_name, email, city, state, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(city)s, %(state)s, %(password)s);'
+        query = 'INSERT INTO fosters (first_name, last_name, email, city, state, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(city)s, %(state)s, %(password)s);'
         return connectToMySQL(cls.db).query_db(query,data)
 
     @classmethod

@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import fosters, shelters, pets, applications
+from flask_app.controllers import fosters, shelters, index, pets, applications
 
 if __name__ == "__main__":
     app.run(debug=True)

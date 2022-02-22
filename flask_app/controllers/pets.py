@@ -1,6 +1,7 @@
 from flask import render_template,redirect,session,request,flash
 from flask_app import app
 from flask_app.models.pet import Pet
+from flask_app.models.foster import Foster
 from flask_app.models.shelter import Shelter
 from flask_app.models.application import Application
 
@@ -8,9 +9,11 @@ from flask_app.models.application import Application
 def new_pet():
     if'shelter_id' not in session:
         return redirect('/logout')
+
     data = {
         'id':session['shelter_id']
     }
+    
     return render_template('new_pet.html', shelter=Shelter.get_by_id(data))
 
 @app.route('/create/pet', methods=['POST'])
@@ -21,7 +24,7 @@ def add_pet():
         return redirect('/shelter/dashboard')
     print(request)
     if 'file' not in request.files:
-            print("no file")
+        return redirect("/")
     data = {
         # 'img': request.form['img'],
         'name': request.form['name'],
@@ -58,5 +61,7 @@ def destroy_pet(id):
 
 @app.route('/pet/<int:id>')
 def show_pet(id):
-    return render_template('show_pet.html', pet=Pet.get_one({'id': id}))
+    if 'foster_id' not in session:
+        return redirect('/foster/logout')
+    return render_template('show_pet.html',foster=Foster.get_by_id({'id': session['foster_id']}), pet=Pet.get_one({'id': id}))
 

@@ -8,41 +8,50 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="d-flex justify-content-between align-items-center col-12">
-        <h1 class="text-center">Welcome {{shelter.shelter_name}}</h1>
-        <div class="d-flex col-4 justify-content-around">
-            <a href="/new/pet" class="btn btn-info">Post a new paw</a>
-            <a href="/logout" class="btn btn-info">Logout</a>
-        </div>
-    </nav>
-    <div class="card col-10 mx-auto my-5 bg-dark text-light">
-        <div class="card-body">
-            <h2 class="card-title text-primary">My Paws</h2>
+    <div class="py-4 container-fluid">
+        <h2 class="float-left mb-0">Welcome back {{shelter.shelter_name}}!</h2>
+        <nav class="nav nav-masthead justify-content-center float-right">
+            <a href="/new/pet" class="btn btn-info ml-1">Post a new paw</a>
+            <a href="/logout" class="btn btn-info ml-1">Logout</a>
+        </nav>
+    </div>
+    <main class="row">
+        <div class="col-7 mx-auto my-5 border border-dark p-2 shadow">
+            <h2 class="text-info">My Paws</h2>
             {% for pet in pets %}
-            <img src="{{pet.name}}.jpg" alt="{{pet.name}}'s pic">
-            <p class="card-text">Name:{{pet.name}}</p>
-            <p class="card-text">Age:{{pet.age}}</p>
-            <p class="card-text">Foster Grade:{{pet.foster_grade}}</p>
-            <hr>
+            <div class="card mt-3">
+                <img src="{{pet.name}}.jpg" class="card-img-top" alt="{{pet.name}}'s pic">
+                <div class="card-body">
+                    <h5 class="card-title">{{pet.name}}</h5>
+                    <p class="card-text">
+                        Age:{{pet.age}} <br>
+                        Foster Grade:{{pet.foster_grade}}
+                    </p>
+                </div>
+            </div>
             {% endfor %}
         </div>
-    </div>
-    <div class="card col-10 mx-auto my-5 bg-dark text-light">
-        <div class="card-body">
-            <h2 class="card-title text-primary">Applications</h2>
-            {% for app in applications %}
-            <p class="card-text">Pet Name: {{app['pet_name']}}</p>
-            <p class="card-text">Foster Name: {{app['foster'].first_name}} {{app['foster'].last_name}}</p>
-            <p class="card-text">Foster Location: {{app['foster'].city}}, {{app['foster'].state}}</p>
-            <p class="card-text">Foster Contact: {{app['foster'].email}}</p>
-            <form action="/application/{{app['application_id']}}/approve" method="post">
-                <button type="submit">Approve</button>
-            </form>
-            <form action="/application/{{app['application_id']}}/reject" method="post">
-                <button type="submit">Reject</button>
-            </form>
-            {% endfor %}
+        <div class="col-4 mx-auto my-5 border border-dark p-2 shadow">
+                <h2 class="text-info">Applications</h2>
+                {% for app in applications %}
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{app['pet_name']}}</h5>
+                        <p class="card-text">Foster Name: {{app['foster'].first_name}} {{app['foster'].last_name}}</p>
+                        <p class="card-text">Foster Location: {{app['foster'].city}}, {{app['foster'].state}}</p>
+                        <p class="card-text">Foster Contact: {{app['foster'].email}}</p>
+
+                        <form action="/application/{{app['application_id']}}/approve" method="post">
+                            <button class="btn btn-success mb-1" type="submit">Approve</button>
+                        </form>
+                        <form action="/application/{{app['application_id']}}/reject" method="post">
+                            <button class="btn btn-danger" type="submit">Reject</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>

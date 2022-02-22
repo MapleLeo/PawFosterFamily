@@ -7,16 +7,17 @@
     <title>New Pet</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body class="bg-light">
+<body>
     <div class="py-4 container-fluid">
-        <h2 class="float-left mb-0 text-light">Welcome back {{shelter.shelter_name}}!</h2>
+        <h2 class="float-left mb-0">Welcome back {{shelter.shelter_name}}!</h2>
         <nav class="nav nav-masthead justify-content-center float-right">
-            <a href="/foster/logout" class="btn btn-info">Logout</a>
+            <a href="/shelter/dashboard" class="btn btn-info ml-1">Dashboard</a>
+            <a href="/logout" class="btn btn-info ml-1">Logout</a>
         </nav>
         <div class="clearfix"></div>
     </div>
-    <form action="/create/pet" method="post" class="col-11 p-4 my-4 bg-dark text-light mx-auto">
-        <h2 class="text-primary">Post a New Paw</h2>
+    <form action="/create/pet" method="post" enctype="multipart/form-data" class="col-11 p-4 my-4 mx-auto border border-dark">
+        <h2 class="text-info">Post a New Paw</h2>
         {% with messages = get_flashed_messages(category_filter=['pet']) %}
             {% if messages %}
             <div class="alert alert-danger" role="alert">
@@ -30,7 +31,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="img">Paw's picture:</label>
-                    <!--<input type="file" id="img" name="img" accept="image/*"> -->
+                    <input type="file" id="img">
                 </div>
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -60,7 +61,7 @@
                     <label for="description">Description:</label>
                     <textarea name="description" cols="30" rows="5" class="form-control"></textarea>
                 </div>
-                <input type="submit" value="Add Pet" class="btn btn-primary">
+                <input type="submit" value="Add Pet" class="btn btn-info">
                 </div>
             </div>
         </div>
